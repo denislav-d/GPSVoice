@@ -6,23 +6,41 @@
 //
 
 import SwiftUI
-import CoreLocation
-import MapKit
+
 
 struct NavigatorView: View {
-    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+    @State private var isVoiceEnabled = false
+    @State private var traveledDistance: Double = 0
     
     var body: some View {
-        Map(position: $position) {
-            UserAnnotation()
-        }
-        .mapControls {
-            MapUserLocationButton()
-            MapPitchToggle()
-      
-        }
-        .onAppear {
-            CLLocationManager().requestWhenInUseAuthorization()
+        NavigationStack {
+            MapView()
+            
+            VStack {
+                HStack{
+                    Text("Total Distance Traveled:")
+                    Spacer()
+                    withAnimation {
+                        Text("\(String(format: "%.1f", traveledDistance)) meters")
+                            .animation(.default)
+                            .contentTransition(.numericText())
+                            .bold()
+                    }
+                   
+                }
+                .padding(.horizontal)
+                
+                Toggle("Enable Voice Feedback", isOn: $isVoiceEnabled)
+                    .padding(.horizontal)
+                    .onChange(of: isVoiceEnabled) {
+                        if isVoiceEnabled {
+                           //
+                        } else {
+                            //
+                        }
+                    }
+            }
+            .padding(.vertical)
         }
     }
 }
