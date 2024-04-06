@@ -6,10 +6,24 @@
 //
 
 import SwiftUI
+import CoreLocation
+import MapKit
 
 struct NavigatorView: View {
+    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+    
     var body: some View {
-        Text("Navigator with map")
+        Map(position: $position) {
+            UserAnnotation()
+        }
+        .mapControls {
+            MapUserLocationButton()
+            MapPitchToggle()
+      
+        }
+        .onAppear {
+            CLLocationManager().requestWhenInUseAuthorization()
+        }
     }
 }
 

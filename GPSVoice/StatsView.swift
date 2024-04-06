@@ -9,18 +9,22 @@ import SwiftUI
 
 struct StatsView: View {
     var body: some View {
-        List() {
-            Section {
-               Text("120 km")
-            } header: {
-                Text("Total distance travelled:")
-            }
-            Section {
-               Text("26 hours")
-            } header: {
-                Text("Total time spent using GPS Voice:")
-            }
+        NavigationStack {
+            List() {
+                Section {
+                    Text("120 km")
+                } header: {
+                    Text("Total distance travelled:")
+                }
+                Section {
+                    Text("26 hours")
+                } header: {
+                    Text("Total time spent using GPS Voice:")
+                }
+            } 
+            .navigationTitle("Stats")
         }
+   
     }
 }
 
