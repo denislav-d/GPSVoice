@@ -6,39 +6,37 @@
 //
 
 import SwiftUI
-import CoreMotion
-
+import CoreLocation
+import AVFoundation
 
 struct NavigatorView: View {
-    @State private var isVoiceEnabled = false
-    @State private var traveledDistance: Double = 0
-    @State private var lastLocation: CLLocation?
+    @StateObject private var viewModel = MapViewModel()
     
     var body: some View {
         NavigationStack {
             VStack {
-                MapView(traveledDistance: $traveledDistance, lastLocation: $lastLocation)
+                MapView(viewModel: viewModel)
                 
                 VStack {
-                    HStack{
+                    HStack {
                         Text("Total Distance Traveled:")
                         Spacer()
-                        Text("\(String(format: "%.1f", traveledDistance)) meters")
-                            .bold()
-                    }
-                    .padding(.horizontal)
-                    
-                    Toggle("Enable Voice Feedback", isOn: $isVoiceEnabled)
-                        .padding(.horizontal)
-                        .onChange(of: isVoiceEnabled) {
-                            // Handle voice feedback enabling/disabling
+                        withAnimation {
+                            Text("\(String(format: "%.1f", viewModel.traveledDistance)) meters")
+                                .bold()
+                                .animation(.default)
+                                .contentTransition(.numericText())
                         }
+                    }
+                    
+                    Toggle("Enable Voice Feedback", isOn: $viewModel.isVoiceEnabled)
                 }
-                .padding(.vertical)
+                .padding()
             }
         }
     }
 }
+
 
 //#Preview {
 //    NavigatorView()

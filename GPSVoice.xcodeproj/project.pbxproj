@@ -14,6 +14,7 @@
 		22DD27232BBC947C00FEDF01 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD27222BBC947C00FEDF01 /* StatsView.swift */; };
 		22DD27252BBC957A00FEDF01 /* NavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD27242BBC957A00FEDF01 /* NavigatorView.swift */; };
 		22DD27272BC1A65B00FEDF01 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD27262BC1A65B00FEDF01 /* MapView.swift */; };
+		22DD27292BC5E27500FEDF01 /* GPSViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD27282BC5E27500FEDF01 /* GPSViewmodel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		22DD27222BBC947C00FEDF01 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		22DD27242BBC957A00FEDF01 /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
 		22DD27262BC1A65B00FEDF01 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		22DD27282BC5E27500FEDF01 /* GPSViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSViewmodel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				22DD27122BBC93DE00FEDF01 /* GPSVoiceApp.swift */,
 				22DD27142BBC93DE00FEDF01 /* ContentView.swift */,
 				22DD27242BBC957A00FEDF01 /* NavigatorView.swift */,
+				22DD27282BC5E27500FEDF01 /* GPSViewmodel.swift */,
 				22DD27222BBC947C00FEDF01 /* StatsView.swift */,
 				22DD27262BC1A65B00FEDF01 /* MapView.swift */,
 				22DD27162BBC93E200FEDF01 /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 				22DD27272BC1A65B00FEDF01 /* MapView.swift in Sources */,
 				22DD27152BBC93DE00FEDF01 /* ContentView.swift in Sources */,
 				22DD27132BBC93DE00FEDF01 /* GPSVoiceApp.swift in Sources */,
+				22DD27292BC5E27500FEDF01 /* GPSViewmodel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
