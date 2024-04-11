@@ -38,6 +38,6 @@ struct NavigatorView: View {
 }
 
 
-//#Preview {
-//    NavigatorView()
-//}
+#Preview {
+    NavigatorView()
+}

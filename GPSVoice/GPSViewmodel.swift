@@ -8,7 +8,6 @@
 import Foundation
 import CoreLocation
 import AVFoundation
-import Combine
 
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var traveledDistance: Double = 0 {
@@ -48,5 +47,10 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         voiceSynthesizer.speak(utterance)
         lastDistanceSpoken = traveledDistance
+    }
+
+    var currentLocation: CLLocationCoordinate2D? {
+        guard let location = lastLocation else { return nil }
+        return CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     }
 }
