@@ -10,7 +10,7 @@ import CoreLocation
 import MapKit
 
 struct MapView: View {
-    @ObservedObject var viewModel: MapViewModel
+    @ObservedObject var viewModel: GPSViewModel
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
     @State private var route: MKRoute?
     @State private var travelTime: String?
@@ -51,8 +51,9 @@ struct MapView: View {
                 }
             }
             .onAppear {
-                fetchRouteFrom(FontysTQLocation, to: FontysR10Location)
+                fetchRouteFrom(viewModel.currentLocation ?? CLLocationCoordinate2D(latitude: 51.44140, longitude: 547695), to: FontysR10Location)
             }
+
             
             if let travelTime = travelTime {
                 VStack {
@@ -104,7 +105,7 @@ struct MapView: View {
 
 extension CLLocationCoordinate2D {
     static let FontysTQPolygonCoordinates = [
-        CLLocationCoordinate2D(latitude:  51.45145, longitude: 5.45274),
+        CLLocationCoordinate2D(latitude: 51.45145, longitude: 5.45274),
         CLLocationCoordinate2D(latitude: 51.45165, longitude: 5.45280),
         CLLocationCoordinate2D(latitude: 51.45149, longitude: 5.45407),
         CLLocationCoordinate2D(latitude: 51.45129, longitude: 5.45401),
@@ -114,14 +115,14 @@ extension CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: 51.45132, longitude: 5.45368)]
     
     static let FontysR10PolygonCoordinates = [
-        CLLocationCoordinate2D(latitude:  51.45145, longitude: 5.45274),
-        CLLocationCoordinate2D(latitude: 51.45165, longitude: 5.45280),
-        CLLocationCoordinate2D(latitude: 51.45149, longitude: 5.45407),
-        CLLocationCoordinate2D(latitude: 51.45129, longitude: 5.45401),
-        CLLocationCoordinate2D(latitude: 51.45130, longitude: 5.45390),
-        CLLocationCoordinate2D(latitude: 51.45106, longitude: 5.45383),
-        CLLocationCoordinate2D(latitude: 51.45108, longitude: 5.45361),
-        CLLocationCoordinate2D(latitude: 51.45132, longitude: 5.45368)]
+        CLLocationCoordinate2D(latitude: 51.45112, longitude: 5.48030),
+        CLLocationCoordinate2D(latitude: 51.45111, longitude: 5.47891),
+        CLLocationCoordinate2D(latitude: 51.45140, longitude: 5.47901),
+        CLLocationCoordinate2D(latitude: 51.45140, longitude: 5.48018),
+        CLLocationCoordinate2D(latitude: 51.45131, longitude: 5.48018),
+        CLLocationCoordinate2D(latitude: 51.45131, longitude: 5.48026),
+        CLLocationCoordinate2D(latitude: 51.45121, longitude: 5.48027),
+        CLLocationCoordinate2D(latitude: 51.45121, longitude: 5.48030)]
 }
 
 

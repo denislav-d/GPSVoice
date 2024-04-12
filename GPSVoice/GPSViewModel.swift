@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import AVFoundation
 
-class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+class GPSViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var traveledDistance: Double = 0 {
         didSet {
             if isVoiceEnabled && traveledDistance - lastDistanceSpoken >= 25 {

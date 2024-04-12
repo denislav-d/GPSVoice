@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView(){
+        TabView() {
             NavigatorView()
                 .tabItem { Label("Navigator", systemImage: "location.north")
                 }

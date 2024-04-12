@@ -10,7 +10,7 @@ import CoreLocation
 import AVFoundation
 
 struct NavigatorView: View {
-    @StateObject private var viewModel = MapViewModel()
+    @ObservedObject private var viewModel = GPSViewModel()
     
     var body: some View {
         NavigationStack {
