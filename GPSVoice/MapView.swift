@@ -5,6 +5,7 @@
 //  Created by Denislav Dimitrov on 6.04.24.
 //
 
+
 import SwiftUI
 import CoreLocation
 import MapKit
@@ -12,11 +13,10 @@ import MapKit
 struct MapView: View {
     @ObservedObject var viewModel: GPSViewModel
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
-    @State private var route: MKRoute?
-    @State private var travelTime: String?
     private let stroke = StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .miter, dash: [5, 5])
     var FontysTQLocation = CLLocationCoordinate2D(latitude: 51.45153, longitude: 5.45335)
     var FontysR10Location = CLLocationCoordinate2D(latitude: 51.45126, longitude: 5.47962)
+    @State private var isLoading = true
     
     var body: some View {
         ZStack {
@@ -45,17 +45,21 @@ struct MapView: View {
                 MapPolygon(coordinates: CLLocationCoordinate2D.FontysR10PolygonCoordinates)
                     .foregroundStyle(.blue.opacity(0.70))
                 
-                if let route = route {
+                if let route = viewModel.route {
                     MapPolyline(route.polyline)
                         .stroke(.red, style: stroke)
                 }
             }
             .onAppear {
-                fetchRouteFrom(viewModel.currentLocation ?? CLLocationCoordinate2D(latitude: 51.44140, longitude: 547695), to: FontysR10Location)
+                isLoading = true
+                fetchRouteAndTime()
             }
-
             
-            if let travelTime = travelTime {
+            if isLoading {
+                Text("Loading...")
+            }
+            
+            if let travelTime = viewModel.travelTime {
                 VStack {
                     Spacer()
                     HStack {
@@ -78,30 +82,13 @@ struct MapView: View {
         }
     }
     
-    private func fetchRouteFrom(_ source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) {
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: source))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
-        request.transportType = .walking
-        
+    private func fetchRouteAndTime() {
         Task {
-            let result = try? await MKDirections(request: request).calculate()
-            route = result?.routes.first
-            getTravelTime()
+            await viewModel.fetchRouteAndTime(to: FontysR10Location)
+            isLoading = false
         }
     }
-    
-    private func getTravelTime() {
-        guard let route = route else { return }
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .abbreviated
-        formatter.allowedUnits = [.hour, .minute]
-        travelTime = formatter.string(from: route.expectedTravelTime)
-    }
 }
-
-
-
 
 extension CLLocationCoordinate2D {
     static let FontysTQPolygonCoordinates = [
