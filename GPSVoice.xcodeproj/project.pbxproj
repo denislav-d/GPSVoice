@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2297383A2BCDCB1E00126159 /* VoiceFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229738392BCDCB1E00126159 /* VoiceFeedbackManager.swift */; };
 		22DD27132BBC93DE00FEDF01 /* GPSVoiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD27122BBC93DE00FEDF01 /* GPSVoiceApp.swift */; };
 		22DD27152BBC93DE00FEDF01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD27142BBC93DE00FEDF01 /* ContentView.swift */; };
 		22DD27172BBC93E200FEDF01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22DD27162BBC93E200FEDF01 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		229738392BCDCB1E00126159 /* VoiceFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceFeedbackManager.swift; sourceTree = "<group>"; };
 		22DD270F2BBC93DE00FEDF01 /* GPSVoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSVoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DD27122BBC93DE00FEDF01 /* GPSVoiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSVoiceApp.swift; sourceTree = "<group>"; };
 		22DD27142BBC93DE00FEDF01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				22DD27142BBC93DE00FEDF01 /* ContentView.swift */,
 				22DD27242BBC957A00FEDF01 /* NavigatorView.swift */,
 				22DD27282BC5E27500FEDF01 /* GPSViewModel.swift */,
+				229738392BCDCB1E00126159 /* VoiceFeedbackManager.swift */,
 				22DD27222BBC947C00FEDF01 /* StatsView.swift */,
 				22DD27262BC1A65B00FEDF01 /* MapView.swift */,
 				22DD27162BBC93E200FEDF01 /* Assets.xcassets */,
@@ -152,6 +155,7 @@
 				22DD27252BBC957A00FEDF01 /* NavigatorView.swift in Sources */,
 				22DD27232BBC947C00FEDF01 /* StatsView.swift in Sources */,
 				22DD27272BC1A65B00FEDF01 /* MapView.swift in Sources */,
+				2297383A2BCDCB1E00126159 /* VoiceFeedbackManager.swift in Sources */,
 				22DD27152BBC93DE00FEDF01 /* ContentView.swift in Sources */,
 				22DD27132BBC93DE00FEDF01 /* GPSVoiceApp.swift in Sources */,
 				22DD27292BC5E27500FEDF01 /* GPSViewModel.swift in Sources */,

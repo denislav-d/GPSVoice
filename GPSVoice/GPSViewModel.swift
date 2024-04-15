@@ -16,6 +16,13 @@ class GPSViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             if isVoiceEnabled && traveledDistance - lastDistanceSpoken >= 25 {
                 speakDistance()
             }
+            UserDefaults.standard.set(traveledDistance, forKey: UserDefaults.traveledDistanceKey)
+        }
+    }
+
+    @Published var allTimeDistance: Double = 0 {
+        didSet {
+            UserDefaults.standard.set(allTimeDistance, forKey: UserDefaults.allTimeDistanceKey)
         }
     }
     @Published var isVoiceEnabled: Bool = false
@@ -24,11 +31,14 @@ class GPSViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     private var lastLocation: CLLocation?
     private var lastDistanceSpoken: Double = 0
-    private var voiceSynthesizer = AVSpeechSynthesizer()
+    private let speechService = VoiceFeedbackManager()
     private var locationManager = CLLocationManager()
 
     override init() {
         super.init()
+        traveledDistance = 0
+        allTimeDistance = UserDefaults.standard.double(forKey: UserDefaults.allTimeDistanceKey)
+
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -36,19 +46,17 @@ class GPSViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else { return }
-
         if let last = lastLocation {
             let distance = last.distance(from: newLocation)
             traveledDistance += distance
+            allTimeDistance += distance
         }
-
         lastLocation = newLocation
     }
-
+    
     private func speakDistance() {
-        let utterance = AVSpeechUtterance(string: "You have traveled \(Int(traveledDistance)) meters.")
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        voiceSynthesizer.speak(utterance)
+        let message = "You have traveled \(Int(traveledDistance)) meters."
+        speechService.speak(message: message)
         lastDistanceSpoken = traveledDistance
     }
 
@@ -81,4 +89,9 @@ class GPSViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         formatter.allowedUnits = [.hour, .minute]
         travelTime = formatter.string(from: route.expectedTravelTime)
     }
+}
+
+extension UserDefaults {
+    static let traveledDistanceKey = "traveledDistanceKey"
+    static let allTimeDistanceKey = "allTimeDistanceKey"
 }

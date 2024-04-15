@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct GPSVoiceApp: App {
+    @StateObject private var viewModel = GPSViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewModel)
         }
     }
 }

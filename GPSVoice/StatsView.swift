@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct StatsView: View {
+    @EnvironmentObject var viewModel: GPSViewModel
+
     var body: some View {
         NavigationStack {
-            List() {
+            List {
                 Section {
-                    Text("120 km")
+                    Text("\(viewModel.allTimeDistance, specifier: "%.2f") meters")
                 } header: {
-                    Text("Total distance travelled:")
+                    Text("All time total distance travelled:")
                 }
                 Section {
                     Text("26 hours")
                 } header: {
                     Text("Total time spent using GPS Voice:")
                 }
-            } 
+            }
             .navigationTitle("Stats")
         }
-   
     }
 }
 
