@@ -16,10 +16,8 @@ class GPSViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             if isVoiceEnabled && traveledDistance - lastDistanceSpoken >= 25 {
                 speakDistance()
             }
-            UserDefaults.standard.set(traveledDistance, forKey: UserDefaults.traveledDistanceKey)
         }
     }
-
     @Published var allTimeDistance: Double = 0 {
         didSet {
             UserDefaults.standard.set(allTimeDistance, forKey: UserDefaults.allTimeDistanceKey)
@@ -85,13 +83,12 @@ class GPSViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private func calculateTravelTime() {
         guard let route = route else { return }
         let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .abbreviated
+        formatter.unitsStyle = .full
         formatter.allowedUnits = [.hour, .minute]
         travelTime = formatter.string(from: route.expectedTravelTime)
     }
 }
 
 extension UserDefaults {
-    static let traveledDistanceKey = "traveledDistanceKey"
     static let allTimeDistanceKey = "allTimeDistanceKey"
 }

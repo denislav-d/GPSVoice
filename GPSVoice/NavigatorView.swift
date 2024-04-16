@@ -19,6 +19,19 @@ struct NavigatorView: View {
                 
                 VStack {
                     HStack {
+                        if let travelTime = viewModel.travelTime {
+                            Text("Estimated travel time:")
+                            Spacer()
+                            withAnimation {
+                                Text(travelTime)
+                                    .bold()
+                                    .animation(.default)
+                                    .contentTransition(.numericText())
+                            }
+                        }
+                    }.padding(.bottom, 10)
+                    
+                    HStack {
                         Text("Total Distance Traveled:")
                         Spacer()
                         withAnimation {

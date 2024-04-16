@@ -56,23 +56,9 @@ struct MapView: View {
             }
             
             if isLoading {
-                Text("Loading...")
-            }
-            
-            if let travelTime = viewModel.travelTime {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Text("Travel time: \(travelTime)")
-                            .padding()
-                            .font(.headline)
-                            .foregroundStyle(.black)
-                            .background(.ultraThinMaterial)
-                            .cornerRadius(15)
-                            .padding()
-                    }
-                }
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
+                    .controlSize(.large)
             }
         }
         .mapControls {

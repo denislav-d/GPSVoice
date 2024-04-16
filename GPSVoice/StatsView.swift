@@ -14,7 +14,7 @@ struct StatsView: View {
         NavigationStack {
             List {
                 Section {
-                    Text("\(viewModel.allTimeDistance, specifier: "%.2f") meters")
+                    Text("\(viewModel.allTimeDistance / 1000, specifier: "%.2f") kilometers")
                 } header: {
                     Text("All time total distance travelled:")
                 }
